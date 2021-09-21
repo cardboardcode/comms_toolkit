@@ -22,3 +22,5 @@ alias com='git commit -m'
 alias scom='git commit -S -m'
 alias ha='git push origin'
 
+# Directory Hop
+alias repo='cd ~/Desktop/repo_archive'
