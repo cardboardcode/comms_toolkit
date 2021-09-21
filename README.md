@@ -1,7 +1,7 @@
-## **What Is This?**
+## **What Is This?** 
 This repository contains a general toolkit one can use to navigate quickly on a new Ubuntu laptop.
 
-## **Setup**
+## **Setup** :hammer:
 
 Run the commands below to download and set up the bash command toolkit on your workstation to quickly start using.
 
