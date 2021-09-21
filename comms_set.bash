@@ -21,6 +21,7 @@ alias add='git add -A'
 alias com='git commit -m'
 alias scom='git commit -S -m'
 alias ha='git push origin'
+alias checkurl='git config --get remote.origin.url'
 
 # Directory Hop
 alias repo='cd ~/Desktop/repo_archive'
