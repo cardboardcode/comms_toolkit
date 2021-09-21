@@ -13,6 +13,7 @@ alias bb='cd -'
 alias open='xdg-open .'
 alias admin='nano ~/.bashrc -l --mouse'
 alias rest='source ~/.bashrc'
+alias new='gnome-terminal & disown'
 
 # Git
 alias st='git status'
