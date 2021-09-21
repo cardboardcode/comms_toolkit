@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-
+# Display [ -WELCOME- ] whenever comms_set.bash is sourced.
 COLUMNS=$(tput cols)
-title="[-WELCOME-]"
+title="[ -WELCOME- ]"
 printf "%*s\n" $(((${#title}+$COLUMNS)/2)) "$title"
 
 # General
@@ -11,7 +11,7 @@ alias d='exit'
 alias cs='clear'
 alias bb='cd -'
 alias open='xdg-open .'
-alias admin='nano ~/.bashrc -l --mouse'
+alias admin='nano ~/comms_toolkit/comms_set.bash -l --mouse'
 alias rest='source ~/.bashrc'
 alias new='gnome-terminal & disown'
 
