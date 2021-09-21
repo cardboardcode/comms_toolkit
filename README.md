@@ -10,4 +10,6 @@ git clone https://github.com/cardboardcode/comms_toolkit.git --depth 1 --single-
 
 ```bash
 echo "source ~/comms_toolkit/comms_set.bash" >> ~/.bashrc
+source ~/.bashrc
 ``` 
+
