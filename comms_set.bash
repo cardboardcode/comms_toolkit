@@ -25,3 +25,30 @@ alias checkurl='git config --get remote.origin.url'
 
 # Directory Hop
 alias repo='cd ~/Desktop/repo_archive'
+
+# Functions
+
+function searchword(){
+
+	# Check if there is not exactly 2 commandline arguments
+	# If true, report error and exit.
+	# Otherwise, proceed.
+	if [ ! $# -eq 2 ]; then
+		echo "[ ERROR ] - Arguments given is not exactly 2. Exiting ..."
+	     	echo "Eg. searchword <SEARCH_DIR> <SEARCH_TERM>"
+		return 1
+	fi
+
+	#Assign input directory based on user's input.
+	SEARCH_DIR="$1"
+	# Check if user input directory does not exist,
+	# If true, report error and exit.
+	# Otherwise, proceed.
+	if [ ! -d "$SEARCH_DIR" ]; then
+		echo "[ ERROR ] - Input search directory does not exist. Exiting..."
+		return 1
+	fi
+
+	grep -rnw $1 -e $2
+}
+
