@@ -19,5 +19,6 @@ alias rest='source ~/.bashrc'
 alias st='git status'
 alias add='git add -A'
 alias com='git commit -m'
+alias scom='git commit -S -m'
 alias ha='git push origin'
 
