@@ -52,3 +52,25 @@ function searchword(){
 	grep -rnw $1 -e $2
 }
 
+function gourl(){
+	GIT_URL=$(git config --get remote.origin.url)
+	echo "Opening ${GIT_URL}"
+	# unset OUTPUT
+
+	# Check if the url is ssh.
+	# If true, get substring and concatenate such that it mimicks a https.
+	# Otherwise, just use the generated url.
+	SUB='@'
+	if [[ "$GIT_URL" == *"$SUB"* ]]; then
+		# Determine and store github or gitlab substring.
+		# Determine and store url substring.
+		# Concatenate 1st and 2nd substring with http://
+		echo ${GIT_URL:4:10}
+		echo ${GIT_URL:15:${#GIT_URL}}
+		firefox "https://${GIT_URL:4:10}/${GIT_URL:15:${#GIT_URL}}"
+	else
+		firefox $GIT_URL
+	fi
+
+	unset GIT_URL SUB
+}
