@@ -14,6 +14,7 @@ alias open='xdg-open .'
 alias admin='nano ~/comms_toolkit/comms_set.bash -l --mouse'
 alias rest='source ~/.bashrc'
 alias new='gnome-terminal & disown'
+alias wifi='ping google.com'
 
 # Git
 alias st='git status'
