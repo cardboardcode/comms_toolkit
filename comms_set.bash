@@ -25,7 +25,20 @@ alias ha='git push origin'
 alias checkurl='git config --get remote.origin.url'
 
 # Directory Hop
-alias repo='cd ~/Desktop/repo_archive'
+function repo(){
+	# Check if /repo does not exists in ~/Desktop
+	# If true, create /repo directory.
+	# Otherwise, proceed.
+	if [ ! -d "/home/$USER/Desktop/repo" ]; then
+		echo "[ /home/$USER/Desktop/repo ] - MISSING"
+		mkdir -p ~/Desktop/repo
+	else
+		echo "[ home/$USER/Desktop/repo ] - FOUND"
+	fi
+
+	cd /home/$USER/Desktop/repo
+
+}
 
 # Functions
 
