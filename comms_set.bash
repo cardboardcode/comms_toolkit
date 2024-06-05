@@ -40,6 +40,21 @@ function repo(){
 
 }
 
+function dev(){
+	# Check if /dev does not exists in ~/Desktop
+	# If true, create /dev directory.
+	# Otherwise, proceed.
+	if [ ! -d "/home/$USER/Desktop/dev" ]; then
+		echo "[ /home/$USER/Desktop/dev ] - MISSING"
+		mkdir -p ~/Desktop/dev
+	else
+		echo "[ home/$USER/Desktop/dev ] - FOUND"
+	fi
+
+	cd /home/$USER/Desktop/dev
+
+}
+
 # Functions
 
 function searchword(){
