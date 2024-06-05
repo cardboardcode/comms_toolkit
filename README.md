@@ -1,5 +1,5 @@
 ## **What Is This?** 
-This repository contains a general toolkit one can use to navigate quickly on a new Ubuntu laptop.
+This repository contains a general toolkit one can **use to navigate quickly** on a new Ubuntu environment.
 
 ## **Setup** :hammer:
 
