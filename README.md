@@ -7,11 +7,17 @@ Run the commands below to download and set up the bash command toolkit on your w
 
 ```bash
 cd $HOME
+```
+
+```bash
 git clone https://github.com/cardboardcode/comms_toolkit.git --depth 1 --single-branch
 ```
 
 ```bash
 echo "source ~/comms_toolkit/comms_set.bash" >> ~/.bashrc
+```
+
+```bash
 source ~/.bashrc
 ``` 
 
