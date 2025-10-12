@@ -56,6 +56,21 @@ function dev(){
 
 }
 
+function rev(){
+	# Check if /review does not exists in ~/Desktop
+	# If true, create /review directory.
+	# Otherwise, proceed.
+	if [ ! -d "/home/$USER/Desktop/review" ]; then
+		echo "[ /home/$USER/Desktop/review ] - MISSING"
+		mkdir -p ~/Desktop/review
+	else
+		echo "[ home/$USER/Desktop/review ] - FOUND"
+	fi
+
+	cd /home/$USER/Desktop/review
+
+}
+
 # Functions
 
 function searchword(){
