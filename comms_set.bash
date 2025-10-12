@@ -4,7 +4,6 @@
 COLUMNS=$(tput cols)
 title="[ -WELCOME- ]"
 printf "%*s\n" $(((${#title}+$COLUMNS)/2)) "$title"
-export PROMPT_COMMAND='history -a; history -r'
 
 # General
 alias b='cd ..'
