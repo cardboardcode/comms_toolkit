@@ -20,6 +20,3 @@ echo "source ~/comms_toolkit/comms_set.bash" >> ~/.bashrc
 ```bash
 source ~/.bashrc
 ``` 
-
-## **TODO**
-- [ ] Implement a modular feature that prints out description of toolkit commands while adhering to DRY principle.
