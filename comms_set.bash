@@ -6,6 +6,7 @@ title="[ -WELCOME- ]"
 printf "%*s\n" $(((${#title}+$COLUMNS)/2)) "$title"
 
 # General
+alias s='cd $HOME/comms_toolkit'
 alias b='cd ..'
 alias d='exit'
 alias cs='clear'
