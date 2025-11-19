@@ -120,7 +120,7 @@ function gourl(){
 	unset GIT_URL SUB
 }
 
-ux_file_path="${HOME}/comms_toolkit/aux.bash"
+aux_file_path="${HOME}/comms_toolkit/aux.bash"
 
 if [[ -f "$aux_file_path" ]]; then
     echo "[aux.bash] - FOUND. Sourcing..."
