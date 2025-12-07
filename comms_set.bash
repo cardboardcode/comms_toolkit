@@ -15,7 +15,24 @@ alias open='xdg-open .'
 alias admin='nano ~/comms_toolkit/comms_set.bash -l --mouse'
 alias rest='source ~/.bashrc'
 alias new='gnome-terminal & disown'
-alias wifi='ping google.com'
+
+function wifi(){
+	while true; do
+	    TS=$(date '+%Y-%m-%d %H:%M:%S')
+	
+	    # 1. Raw connectivity (no DNS)
+	    if ! ping -c1 -W2 1.1.1.1 > /dev/null 2>&1; then
+	        echo "[$TS] Offline (no ping)"
+	    # 2. DNS working?
+	    elif ! getent hosts google.com > /dev/null 2>&1; then
+	        echo "[$TS] DNS failure"
+	    else
+	        echo "[$TS] Online"
+	    fi
+	
+	    sleep 2
+	done
+}
 
 # Git
 alias st='git status'
