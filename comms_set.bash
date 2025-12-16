@@ -137,6 +137,35 @@ function gourl(){
 	unset GIT_URL SUB
 }
 
+function arp_scan_select() {
+    # Ensure arp-scan exists
+    if ! command -v arp-scan >/dev/null 2>&1; then
+        echo "Error: arp-scan is not installed."
+        return 1
+    fi
+
+    # Get list of non-loopback interfaces
+    mapfile -t ifaces < <(ip -o link show | awk -F': ' '{print $2}' | grep -v '^lo$')
+
+    if [ "${#ifaces[@]}" -eq 0 ]; then
+        echo "No network interfaces found."
+        return 1
+    fi
+
+    echo "Select a network interface:"
+    select iface in "${ifaces[@]}"; do
+        if [[ -n "$iface" ]]; then
+            echo
+            echo "Running arp-scan on interface: $iface"
+            echo
+            sudo arp-scan -I "$iface" --localnet
+            break
+        else
+            echo "Invalid selection. Try again."
+        fi
+    done
+}
+
 aux_file_path="${HOME}/comms_toolkit/aux.bash"
 
 if [[ -f "$aux_file_path" ]]; then
