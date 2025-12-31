@@ -37,10 +37,32 @@ function wifi(){
 # Git
 alias st='git status'
 alias add='git add -A'
-alias com='git commit -m'
 alias scom='git commit -S -m'
 alias ha='git push origin'
 alias checkurl='git config --get remote.origin.url'
+
+_git_commit_options() {
+    local cur opts
+    COMPREPLY=()
+
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    opts=":hammer: :heavy_plus_sign: :blue_book: :zap: :fire:"
+
+    # Only complete when inside an opening quote
+    if [[ $COMP_CWORD -eq 1 && $cur == \"* ]]; then
+        local unquoted="${cur#\"}"
+
+        for opt in $opts; do
+            if [[ $opt == "$unquoted"* ]]; then
+                COMPREPLY+=( "\"$opt \"")
+            fi
+        done
+    fi
+}
+
+function com() {
+    git commit --signoff -m "$1"
+}
 
 # Directory Hop
 function repo(){
