@@ -12,7 +12,7 @@ alias d='exit'
 alias cs='clear'
 alias bb='cd -'
 alias open='xdg-open .'
-alias admin='nano ~/comms_toolkit/comms_set.bash -l --mouse'
+alias admin='nano ~/comms_toolkit/aux.bash -l --mouse'
 alias rest='source ~/.bashrc'
 alias new='gnome-terminal & disown'
 
