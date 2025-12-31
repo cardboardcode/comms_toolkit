@@ -64,6 +64,8 @@ function com() {
     git commit --signoff -m "$1"
 }
 
+complete -o nospace -F _git_commit_options com
+
 # Directory Hop
 function repo(){
 	# Check if /repo does not exists in ~/Desktop
