@@ -190,6 +190,11 @@ function arp_scan_select() {
     done
 }
 
+avail_space() {
+    local space=$(df -h --output=avail / | tail -n 1 | xargs)
+    echo "Available Memory Remaining: $space"
+}
+
 aux_file_path="${HOME}/comms_toolkit/aux.bash"
 
 if [[ -f "$aux_file_path" ]]; then
