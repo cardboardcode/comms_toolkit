@@ -205,3 +205,38 @@ else
 fi
 
 unset aux_file_path
+
+copyfile() {
+  if [ $# -ne 1 ]; then
+    echo "Usage: copyfile <file>"
+    return 1
+  fi
+
+  local file="$1"
+
+  if [ ! -f "$file" ]; then
+    echo "Error: File not found -> $file"
+    return 1
+  fi
+
+  # macOS
+  if command -v pbcopy >/dev/null 2>&1; then
+    cat "$file" | pbcopy
+
+  # Wayland (modern Linux)
+  elif command -v wl-copy >/dev/null 2>&1; then
+    cat "$file" | wl-copy
+
+  # X11 (Linux fallback 1)
+  elif command -v xclip >/dev/null 2>&1; then
+    cat "$file" | xclip -selection clipboard
+
+  # X11 (Linux fallback 2)
+  elif command -v xsel >/dev/null 2>&1; then
+    cat "$file" | xsel --clipboard --input
+
+  else
+    echo "No clipboard utility found (install pbcopy/wl-copy/xclip/xsel)"
+    return 1
+  fi
+}
