@@ -46,7 +46,7 @@ _git_commit_options() {
     COMPREPLY=()
 
     cur="${COMP_WORDS[COMP_CWORD]}"
-    opts=":hammer: :heavy_plus_sign: :blue_book: :zap: :fire:"
+    opts=":hammer: :heavy_plus_sign: :blue_book: :zap: :fire: :package:"
 
     # Only complete when inside an opening quote
     if [[ $COMP_CWORD -eq 1 && $cur == \"* ]]; then
