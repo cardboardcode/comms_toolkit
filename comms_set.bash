@@ -71,14 +71,14 @@ function repo(){
 	# Check if /repo does not exists in ~/Desktop
 	# If true, create /repo directory.
 	# Otherwise, proceed.
-	if [ ! -d "/home/$USER/Desktop/repo" ]; then
-		echo "[ /home/$USER/Desktop/repo ] - MISSING"
-		mkdir -p ~/Desktop/repo
+	if [ ! -d "$HOME/Desktop/repo" ]; then
+		echo "[ $HOME/Desktop/repo ] - MISSING"
+		mkdir -p $HOME/Desktop/repo
 	else
-		echo "[ home/$USER/Desktop/repo ] - FOUND"
+		echo "[ $HOME/Desktop/repo ] - FOUND"
 	fi
 
-	cd /home/$USER/Desktop/repo
+	cd $HOME/Desktop/repo
 
 }
 
@@ -86,14 +86,14 @@ function dev(){
 	# Check if /dev does not exists in ~/Desktop
 	# If true, create /dev directory.
 	# Otherwise, proceed.
-	if [ ! -d "/home/$USER/Desktop/dev" ]; then
-		echo "[ /home/$USER/Desktop/dev ] - MISSING"
-		mkdir -p ~/Desktop/dev
+	if [ ! -d "$HOME/Desktop/dev" ]; then
+		echo "[ $HOME/Desktop/dev ] - MISSING"
+		mkdir -p $HOME/Desktop/dev
 	else
-		echo "[ home/$USER/Desktop/dev ] - FOUND"
+		echo "[ $HOME/Desktop/dev ] - FOUND"
 	fi
 
-	cd /home/$USER/Desktop/dev
+	cd $HOME/Desktop/dev
 
 }
 
@@ -101,14 +101,14 @@ function rev(){
 	# Check if /review does not exists in ~/Desktop
 	# If true, create /review directory.
 	# Otherwise, proceed.
-	if [ ! -d "/home/$USER/Desktop/review" ]; then
-		echo "[ /home/$USER/Desktop/review ] - MISSING"
+	if [ ! -d "$HOME/Desktop/review" ]; then
+		echo "[ $HOME/Desktop/review ] - MISSING"
 		mkdir -p ~/Desktop/review
 	else
-		echo "[ home/$USER/Desktop/review ] - FOUND"
+		echo "[ $HOME/Desktop/review ] - FOUND"
 	fi
 
-	cd /home/$USER/Desktop/review
+	cd $HOME/Desktop/review
 
 }
 
