@@ -161,7 +161,10 @@ function gourl(){
 	unset GIT_URL SUB
 }
 
-function arp_scan_select() {
+# -----------------------------------------------------------------------------
+# arp_scan_select
+# -----------------------------------------------------------------------------
+arp_scan_select() {
     # Ensure arp-scan exists
     if ! command -v arp-scan >/dev/null 2>&1; then
         echo "Error: arp-scan is not installed."
@@ -169,19 +172,34 @@ function arp_scan_select() {
     fi
 
     # Get list of non-loopback interfaces
-    mapfile -t ifaces < <(ip -o link show | awk -F': ' '{print $2}' | grep -v '^lo$')
+    mapfile -t ifaces < <(
+        ip -o link show \
+        | awk -F': ' '{print $2}' \
+        | grep -v '^lo$'
+    )
 
     if [ "${#ifaces[@]}" -eq 0 ]; then
         echo "No network interfaces found."
         return 1
     fi
 
+    # Interface supplied
+    if [[ -n "$1" ]]; then
+        local iface="$1"
+
+        if [[ ! " ${ifaces[*]} " =~ " ${iface} " ]]; then
+            echo "Unknown interface: $iface"
+            return 1
+        fi
+
+        sudo arp-scan -I "$iface" --localnet
+        return
+    fi
+
+    # No interface supplied -> interactive selection
     echo "Select a network interface:"
     select iface in "${ifaces[@]}"; do
         if [[ -n "$iface" ]]; then
-            echo
-            echo "Running arp-scan on interface: $iface"
-            echo
             sudo arp-scan -I "$iface" --localnet
             break
         else
@@ -189,6 +207,22 @@ function arp_scan_select() {
         fi
     done
 }
+
+# -----------------------------------------------------------------------------
+# Bash completion
+# -----------------------------------------------------------------------------
+_arp_scan_select_completion() {
+    local cur
+    cur="${COMP_WORDS[COMP_CWORD]}"
+
+    COMPREPLY=($(compgen -W "$(
+        ip -o link show \
+        | awk -F': ' '{print $2}' \
+        | grep -v '^lo$'
+    )" -- "$cur"))
+}
+
+complete -F _arp_scan_select_completion arp_scan_select
 
 avail_space() {
     local space=$(df -h --output=avail / | tail -n 1 | xargs)
