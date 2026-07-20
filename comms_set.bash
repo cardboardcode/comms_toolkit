@@ -5,14 +5,16 @@ COLUMNS=$(tput cols)
 title="[ -WELCOME- ]"
 printf "%*s\n" $(((${#title}+$COLUMNS)/2)) "$title"
 
+WORKSPACE_DIR="comms_toolkit"
+
 # General
-alias s='cd $HOME/comms_toolkit'
+alias s='cd $HOME/$WORKSPACE_DIR'
 alias b='cd ..'
 alias d='exit'
 alias cs='clear'
 alias bb='cd -'
 alias open='xdg-open .'
-alias admin='nano ~/comms_toolkit/aux.bash -l --mouse'
+alias admin='nano ~/$WORKSPACE_DIR/aux.bash -l --mouse'
 alias rest='source ~/.bashrc'
 alias new='gnome-terminal & disown'
 
@@ -229,13 +231,13 @@ avail_space() {
     echo "Available Memory Remaining: $space"
 }
 
-aux_file_path="${HOME}/comms_toolkit/aux.bash"
+aux_file_path="${HOME}/${WORKSPACE_DIR}/aux.bash"
 
 if [[ -f "$aux_file_path" ]]; then
     echo "[aux.bash] - FOUND. Sourcing..."
 	source $aux_file_path
 else
-	echo "[aux.bash] - MISSING. Please create under /comms_toolkit to add new commands..."
+	echo "[aux.bash] - MISSING. Please create under [${WORKSPACE_DIR}] to add new commands..."
 fi
 
 unset aux_file_path
