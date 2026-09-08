@@ -276,3 +276,39 @@ copyfile() {
     return 1
   fi
 }
+
+# Function to hide the current directory path
+function hide() {
+    # 1. Save the original prompt if we haven't already
+    if [ -z "$ORIG_PS1" ]; then
+        export ORIG_PS1="$PS1"
+    fi
+    
+    # 2. Save and clear PROMPT_COMMAND to stop it from overriding us
+    if [ -n "$PROMPT_COMMAND" ] && [ "$PROMPT_COMMAND" != "hide_prompt_fix" ]; then
+        export ORIG_PROMPT_COMMAND="$PROMPT_COMMAND"
+    fi
+    unset PROMPT_COMMAND
+    
+    # 3. Apply the clean prompt symbol
+    export PS1='\$ '
+    echo "Directory path hidden. Run [ unhide ] to undo..."
+}
+
+# Function to reveal the current directory path
+function unhide() {
+    # 1. Restore the original prompt
+    if [ -n "$ORIG_PS1" ]; then
+        export PS1="$ORIG_PS1"
+        
+        # 2. Restore the original PROMPT_COMMAND if it existed
+        if [ -n "$ORIG_PROMPT_COMMAND" ]; then
+            export PROMPT_COMMAND="$ORIG_PROMPT_COMMAND"
+            unset ORIG_PROMPT_COMMAND
+        fi
+        
+        echo "Directory path revealed. Run [ hide ] to undo..."
+    else
+        echo "Prompt is already showing the path or wasn't hidden using 'hide'."
+    fi
+}
