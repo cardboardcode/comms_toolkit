@@ -313,4 +313,18 @@ function unhide() {
     fi
 }
 
-function alert_run() { "$@"; paplay /usr/share/sounds/freedesktop/stereo/complete.oga & }
+function alert_run() {
+    "$@"
+    local status=$?
+    local sound="/usr/share/sounds/freedesktop/stereo/complete.oga"
+
+    if command -v paplay >/dev/null 2>&1; then
+        (paplay "$sound" >/dev/null 2>&1 &)
+    elif command -v pw-play >/dev/null 2>&1; then
+        (pw-play "$sound" >/dev/null 2>&1 &)
+    else
+        echo "alert_run: neither paplay nor pw-play is installed." >&2
+    fi
+
+    return $status
+}
