@@ -312,3 +312,5 @@ function unhide() {
         echo "Prompt is already showing the path or wasn't hidden using 'hide'."
     fi
 }
+
+function alert_run() { "$@"; paplay /usr/share/sounds/freedesktop/stereo/complete.oga & }
